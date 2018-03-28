@@ -17,7 +17,7 @@ namespace WD.ValueValidators.Base
         /// <summary>
         ///     Collection of validation rules for this value
         /// </summary>
-        public IEnumerable<IValidationRule<T>> ValidationRules { get; set; } = new List<IValidationRule<T>>();
+        public IList<IValidationRule<T>> ValidationRules { get; set; } = new List<IValidationRule<T>>();
 
         #endregion
 

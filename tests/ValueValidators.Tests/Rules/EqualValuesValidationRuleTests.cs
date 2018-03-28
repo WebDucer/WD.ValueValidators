@@ -2,14 +2,13 @@
 using FluentAssertions;
 using NUnit.Framework;
 using WD.ValueValidators.Rules;
+using static WD.ValueValidators.Tests.Constants;
 
 namespace WD.ValueValidators.Tests.Rules
 {
     [TestFixture]
     public class EqualValuesValidationRuleTests
     {
-        private const string _ERROR_MESSAGE = "Error";
-
         [TestCase("", "", true)]
         [TestCase("Hallo", "", false)]
         [TestCase("", "Hallo", false)]
@@ -20,7 +19,7 @@ namespace WD.ValueValidators.Tests.Rules
         public void Validate_WithSringAsValue(string value, string compareValue, bool validationResult)
         {
             // Arrange
-            var sut = new EqualValuesValidationRule<string>(_ERROR_MESSAGE, compareValue);
+            var sut = new EqualValuesValidationRule<string>(ERROR_MESSAGE, compareValue);
 
             // Act
             var result = sut.Validate(value);
@@ -40,7 +39,7 @@ namespace WD.ValueValidators.Tests.Rules
         {
             // Arrange
             var valueToComapre = new Func<string>(() => compareValue);
-            var sut = new EqualValuesValidationRule<string>(_ERROR_MESSAGE, valueToComapre);
+            var sut = new EqualValuesValidationRule<string>(ERROR_MESSAGE, valueToComapre);
 
             // Act
             var result = sut.Validate(value);
@@ -59,7 +58,7 @@ namespace WD.ValueValidators.Tests.Rules
         public void Validate_WithIntegerAsValue(int value, int compareValue, bool validationResult)
         {
             // Arrange
-            var sut = new EqualValuesValidationRule<int>(_ERROR_MESSAGE, compareValue);
+            var sut = new EqualValuesValidationRule<int>(ERROR_MESSAGE, compareValue);
 
             // Act
             var result = sut.Validate(value);
@@ -72,13 +71,13 @@ namespace WD.ValueValidators.Tests.Rules
         public void Validate_WithErrorMessage_HasErrorMessage()
         {
             // Arrange
-            var sut = new EqualValuesValidationRule<string>(_ERROR_MESSAGE, "1");
+            var sut = new EqualValuesValidationRule<string>(ERROR_MESSAGE, "1");
 
             // Act
             var result = sut.Validate("2");
 
             // Assert
-            sut.ErrorMessage.Should().Be(_ERROR_MESSAGE);
+            sut.ErrorMessage.Should().Be(ERROR_MESSAGE);
         }
     }
 }

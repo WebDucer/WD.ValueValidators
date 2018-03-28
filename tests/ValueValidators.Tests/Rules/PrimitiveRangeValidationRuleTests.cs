@@ -2,14 +2,13 @@
 using FluentAssertions;
 using NUnit.Framework;
 using WD.ValueValidators.Rules;
+using static WD.ValueValidators.Tests.Constants;
 
 namespace WD.ValueValidators.Tests.Rules
 {
     [TestFixture]
     public class PrimitiveRangeValidationRuleTests
     {
-        private const string _ERROR_MESSAGE = "Error";
-
         [TestCase(10, 0, 100, true)]
         [TestCase(0, 0, 100, true)]
         [TestCase(100, 0, 100, true)]
@@ -18,7 +17,7 @@ namespace WD.ValueValidators.Tests.Rules
         public void Validate_WithIntegers(int value, int minValue, int maxValue, bool expected)
         {
             // Arrange
-            var sut = new PrimitiveRangeValidationRule<int>(_ERROR_MESSAGE, minValue, maxValue);
+            var sut = new PrimitiveRangeValidationRule<int>(ERROR_MESSAGE, minValue, maxValue);
 
             // Act
             var result = sut.Validate(value);
@@ -35,7 +34,7 @@ namespace WD.ValueValidators.Tests.Rules
         public void Validate_WithIntegers_MaxNotValid(int value, int minValue, int maxValue, bool expected)
         {
             // Arrange
-            var sut = new PrimitiveRangeValidationRule<int>(_ERROR_MESSAGE, minValue, maxValue, false);
+            var sut = new PrimitiveRangeValidationRule<int>(ERROR_MESSAGE, minValue, maxValue, false);
 
             // Act
             var result = sut.Validate(value);
@@ -53,7 +52,7 @@ namespace WD.ValueValidators.Tests.Rules
         public void Validate_WithIntegers_MinNotValid(int value, int minValue, int maxValue, bool expected)
         {
             // Arrange
-            var sut = new PrimitiveRangeValidationRule<int>(_ERROR_MESSAGE, minValue, maxValue, minValueAllowed: false);
+            var sut = new PrimitiveRangeValidationRule<int>(ERROR_MESSAGE, minValue, maxValue, minValueAllowed: false);
 
             // Act
             var result = sut.Validate(value);
@@ -66,7 +65,7 @@ namespace WD.ValueValidators.Tests.Rules
         public void Ctor_WithMinEqualsMaxValue_Throws()
         {
             // Arrange
-            var sutAction = new Action(() => new PrimitiveRangeValidationRule<int>(_ERROR_MESSAGE, 10, 10));
+            var sutAction = new Action(() => new PrimitiveRangeValidationRule<int>(ERROR_MESSAGE, 10, 10));
 
             // Act / Assert
             sutAction.Should().ThrowExactly<ArgumentException>()
@@ -77,7 +76,7 @@ namespace WD.ValueValidators.Tests.Rules
         public void Ctor_WithMinGreaterMaxValue_Throws()
         {
             // Arrange
-            var sutAction = new Action(() => new PrimitiveRangeValidationRule<int>(_ERROR_MESSAGE, 10, 9));
+            var sutAction = new Action(() => new PrimitiveRangeValidationRule<int>(ERROR_MESSAGE, 10, 9));
 
             // Act / Assert
             sutAction.Should().ThrowExactly<ArgumentException>()
@@ -88,13 +87,13 @@ namespace WD.ValueValidators.Tests.Rules
         public void Validate_WithErrorMessage_HasErrorMessage()
         {
             // Arrange
-            var sut = new PrimitiveRangeValidationRule<int>(_ERROR_MESSAGE, 0, 100);
+            var sut = new PrimitiveRangeValidationRule<int>(ERROR_MESSAGE, 0, 100);
 
             // Act
             var result = sut.Validate(-1000);
 
             // Assert
-            sut.ErrorMessage.Should().Be(_ERROR_MESSAGE);
+            sut.ErrorMessage.Should().Be(ERROR_MESSAGE);
         }
 
         [Test]

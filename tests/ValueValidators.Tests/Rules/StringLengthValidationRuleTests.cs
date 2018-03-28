@@ -3,19 +3,18 @@ using System.Text;
 using FluentAssertions;
 using NUnit.Framework;
 using WD.ValueValidators.Rules;
+using static WD.ValueValidators.Tests.Constants;
 
 namespace WD.ValueValidators.Tests.Rules
 {
     [TestFixture]
     public class StringLengthValidationRuleTests
     {
-        private const string _ERROR_MESSAGE = "Error";
-
         [Test]
         public void Constructor_WithNegativeLength_Throws()
         {
             // Arrange
-            var sutAction = new Action(() => new StringLengthValidationRule(_ERROR_MESSAGE, -1));
+            var sutAction = new Action(() => new StringLengthValidationRule(ERROR_MESSAGE, -1));
 
             // Act / Assert
             sutAction.Should().ThrowExactly<ArgumentException>()
@@ -30,7 +29,7 @@ namespace WD.ValueValidators.Tests.Rules
         {
             // Arrange
             var value = GetValueOfLength(valueLength);
-            var sut = new StringLengthValidationRule(_ERROR_MESSAGE, length);
+            var sut = new StringLengthValidationRule(ERROR_MESSAGE, length);
 
             // Act
             var result = sut.Validate(value);
@@ -47,7 +46,7 @@ namespace WD.ValueValidators.Tests.Rules
         {
             // Arrange
             var value = GetValueOfLength(valueLength);
-            var sut = new StringLengthValidationRule(_ERROR_MESSAGE, length, checkMaxLength: false);
+            var sut = new StringLengthValidationRule(ERROR_MESSAGE, length, checkMaxLength: false);
 
             // Act
             var result = sut.Validate(value);
@@ -61,7 +60,7 @@ namespace WD.ValueValidators.Tests.Rules
         {
             // Arrange
             string value = null;
-            var sut = new StringLengthValidationRule(_ERROR_MESSAGE, 20);
+            var sut = new StringLengthValidationRule(ERROR_MESSAGE, 20);
 
             // Act
             var result = sut.Validate(value);
@@ -75,7 +74,7 @@ namespace WD.ValueValidators.Tests.Rules
         {
             // Arrange
             string value = null;
-            var sut = new StringLengthValidationRule(_ERROR_MESSAGE, 20, nullIsValid: true);
+            var sut = new StringLengthValidationRule(ERROR_MESSAGE, 20, nullIsValid: true);
 
             // Act
             var result = sut.Validate(value);
@@ -88,10 +87,10 @@ namespace WD.ValueValidators.Tests.Rules
         public void Constructor_SetErrorMessage()
         {
             // Arrange / Act
-            var sut = new StringLengthValidationRule(_ERROR_MESSAGE, 20);
+            var sut = new StringLengthValidationRule(ERROR_MESSAGE, 20);
 
             // Assert
-            sut.ErrorMessage.Should().Be(_ERROR_MESSAGE);
+            sut.ErrorMessage.Should().Be(ERROR_MESSAGE);
         }
 
         private string GetValueOfLength(int length)

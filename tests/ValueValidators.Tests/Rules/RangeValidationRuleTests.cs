@@ -3,20 +3,19 @@ using FluentAssertions;
 using NUnit.Framework;
 using WD.ValueValidators.Rules;
 using WD.ValueValidators.Tests.TestMocks;
+using static WD.ValueValidators.Tests.Constants;
 
 namespace WD.ValueValidators.Tests.Rules
 {
     [TestFixture]
     public class RangeValidationRuleTests
     {
-        private const string _ERROR_MESSAGE = "Error";
-
         [Test]
         public void Ctor_WithNullMaxValue_Throws()
         {
             // Arrange
             var sutAction = new Action(() =>
-                new RangeValidationRule<string>(_ERROR_MESSAGE, _ERROR_MESSAGE, null, nullIsValid: false));
+                new RangeValidationRule<string>(ERROR_MESSAGE, ERROR_MESSAGE, null, nullIsValid: false));
 
             // Act / Assert
             sutAction.Should().ThrowExactly<ArgumentNullException>()
@@ -28,7 +27,7 @@ namespace WD.ValueValidators.Tests.Rules
         {
             // Arrange
             var sutAction = new Action(() =>
-                new RangeValidationRule<string>(_ERROR_MESSAGE, null, _ERROR_MESSAGE, nullIsValid: false));
+                new RangeValidationRule<string>(ERROR_MESSAGE, null, ERROR_MESSAGE, nullIsValid: false));
 
             // Act / Assert
             sutAction.Should().ThrowExactly<ArgumentNullException>()
@@ -39,7 +38,7 @@ namespace WD.ValueValidators.Tests.Rules
         public void Validate_WithNullValue_NotValid()
         {
             // Arrange
-            var sut = new RangeValidationRule<string>(_ERROR_MESSAGE, "0", "100", nullIsValid: false);
+            var sut = new RangeValidationRule<string>(ERROR_MESSAGE, "0", "100", nullIsValid: false);
 
             // Act
             var result = sut.Validate(null);
@@ -52,7 +51,7 @@ namespace WD.ValueValidators.Tests.Rules
         public void Validate_WithAllowedNullValue_Valid()
         {
             // Arrange
-            var sut = new RangeValidationRule<string>(_ERROR_MESSAGE, "0", "100");
+            var sut = new RangeValidationRule<string>(ERROR_MESSAGE, "0", "100");
 
             // Act
             var result = sut.Validate(null);
@@ -69,7 +68,7 @@ namespace WD.ValueValidators.Tests.Rules
         public void Validate_WithTestClass(int value, int minValue, int maxValue, bool expected)
         {
             // Arrange
-            var sut = new RangeValidationRule<RangeTestClass>(_ERROR_MESSAGE, new RangeTestClass(minValue), new RangeTestClass(maxValue));
+            var sut = new RangeValidationRule<RangeTestClass>(ERROR_MESSAGE, new RangeTestClass(minValue), new RangeTestClass(maxValue));
 
             // Act
             var result = sut.Validate(new RangeTestClass(value));
