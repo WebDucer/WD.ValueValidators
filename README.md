@@ -23,6 +23,8 @@ Library with common value validators to be used in UI application (e.g. ASP.Net 
 
 ## Validation Rules
 
+- `ContainsValidationRule` - Check, if the value is in the given collection (with possibility to inverse the result)
 - `EqualValuesValidationRule<T>` - Compare two values for equality
-- `RangeValidationRule<T>` - Compare the value to a given min and max values
+- `RangeValidationRule<T>` / `PrimitiveRangeValidationRule` - Compare the value to a given min and max values
+- `RequiredValidationRule` - Check, if the string value is set (with a flag, for white spaces treaded as valid values)
 - `StringLengthValidationRule` - Check the max or min length of a string
