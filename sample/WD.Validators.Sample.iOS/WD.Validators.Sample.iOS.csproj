@@ -152,7 +152,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\WD.Validators.Sample\WD.Validators.Sample.csproj">
-      <Project>{6DDE9918-05DF-4CB5-8485-556CB42A7F40}</Project>
+      <Project>{1ABC81C2-3E9B-4702-9300-B20F160E3DCE}</Project>
       <Name>WD.Validators.Sample</Name>
     </ProjectReference>
   </ItemGroup>

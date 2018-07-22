@@ -11,10 +11,10 @@ namespace WD.Validators.Sample
         {
             InitializeComponent();
 
-            MainPage = new MainPage
+            MainPage = new NavigationPage(new MainPage
             {
                 BindingContext = new MainViewModel()
-            };
+            });
         }
 
         protected override void OnStart()

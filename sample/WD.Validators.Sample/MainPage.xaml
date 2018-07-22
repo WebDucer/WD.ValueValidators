@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -46,7 +46,18 @@
 
             <!-- Null validation -->
             <Label Text="Null validation:" />
-            <Picker ItemsSource="{Binding Values}" SelectedItem="{Binding NullValue.Value}" ItemDisplayBinding="{Binding DislayValue}" BackgroundColor="{Binding NullValue.IsValid, Converter={StaticResource ValidEntryConverter}}"/>
+            <OnPlatform x:TypeArguments="View">
+                <On Platform="Android, iOS, UWP, WPF">
+                    <On.Value>
+                        <Picker ItemsSource="{Binding Values}" SelectedItem="{Binding NullValue.Value}" ItemDisplayBinding="{Binding DislayValue}" BackgroundColor="{Binding NullValue.IsValid, Converter={StaticResource ValidEntryConverter}}" />
+                    </On.Value>
+                </On>
+                <On Platform="macOS">
+                    <On.Value>
+                        <Label FontAttributes="Bold" TextColor="Red" Text="Picker not fully supported on macOS" />
+                    </On.Value>
+                </On>
+            </OnPlatform>
             <Label Text="{Binding NullValue.FirstError}" Style="{StaticResource ErrorMessage}" />
 
             <!-- Phone number -->
