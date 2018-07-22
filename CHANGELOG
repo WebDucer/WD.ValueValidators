@@ -9,6 +9,8 @@
 - New Validators
     - RegexValidationRule
     - NullValidationRule<T>
+    - PhoneNumberValidationrule
+    - EmailValidationRule
 
 # 0.2
 
