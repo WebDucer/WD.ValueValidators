@@ -48,6 +48,26 @@
             <Label Text="Null validation:" />
             <Picker ItemsSource="{Binding Values}" SelectedItem="{Binding NullValue.Value}" ItemDisplayBinding="{Binding DislayValue}" BackgroundColor="{Binding NullValue.IsValid, Converter={StaticResource ValidEntryConverter}}"/>
             <Label Text="{Binding NullValue.FirstError}" Style="{StaticResource ErrorMessage}" />
+
+            <!-- Phone number -->
+            <Label Text="Phone number:" />
+            <Entry Text="{Binding PhoneNumber.Value}" BackgroundColor="{Binding PhoneNumber.IsValid, Converter={StaticResource ValidEntryConverter}}"/>
+            <Label Text="{Binding PhoneNumber.FirstError}" Style="{StaticResource ErrorMessage}" />
+
+            <!-- Primitive range -->
+            <Label Text="Int Range (10, 50):" />
+            <Slider Value="{Binding IntRange.Value}" Minimum="0" Maximum="100" BackgroundColor="{Binding IntRange.IsValid, Converter={StaticResource ValidEntryConverter}}"/>
+            <Label Text="{Binding IntRange.FirstError}" Style="{StaticResource ErrorMessage}" />
+
+            <!-- Regex value -->
+            <Label Text="Regular expression:" />
+            <Entry Text="{Binding RegexValue.Value}" BackgroundColor="{Binding RegexValue.IsValid, Converter={StaticResource ValidEntryConverter}}"/>
+            <Label Text="{Binding RegexValue.FirstError}" Style="{StaticResource ErrorMessage}" />
+
+            <!-- length and Required -->
+            <Label Text="Required and length check (8-32):" />
+            <Entry Text="{Binding MixedString.Value}" BackgroundColor="{Binding MixedString.IsValid, Converter={StaticResource ValidEntryConverter}}"/>
+            <Label Text="{Binding MixedString.FirstError}" Style="{StaticResource ErrorMessage}" />
         </StackLayout>
     </ScrollView>
 

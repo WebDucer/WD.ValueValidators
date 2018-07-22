@@ -25,3 +25,32 @@ Library with common value validators to be used in UI application (e.g. ASP.Net 
 - `RegexValidationRule` - Check, if the value match the given regular expression
 - `RequiredValidationRule` - Check, if the string value is set (with a flag, for white spaces treaded as valid values)
 - `StringLengthValidationRule` - Check the max or min length of a string
+
+## Usage
+
+Initialize your validatable values in your view model.
+
+```csharp
+MyValidatableValue = new ValidatableValue<string>
+{
+    ValidationRules = new IValidationRule<string>[]
+    {
+        new ContainsValidationRule<string>("Value not allowed", new[] {"test", "example", "fake"}, true),
+        new StringLengthValidationRule("The value should have at least 2 characters", 2, false),
+        new StringLengthValidationRule("The value should have at maximum 16 charachters", 16),
+        new RequiredValidationRule("Value is required")
+    }
+};
+```
+
+Bind the value in your XAML code.
+
+```xml
+...
+<Label Text="My value:" />
+<Entry Text="{Binding MyValidatableValue.Value}"
+       BackgroundColor="{Binding MyValidatableValue.IsValid, Converter={StaticResource ValidationColorConverter}}"/>
+<Label Text="{Binding MyValidatableValue.FirstError}"
+       Style="{StaticResource ErrorMessage}" />
+...
+```

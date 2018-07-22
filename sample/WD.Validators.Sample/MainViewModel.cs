@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using WD.ValueValidators.Base;
 using WD.ValueValidators.Rules;
@@ -21,6 +20,7 @@ namespace WD.Validators.Sample
                 }
             };
             ContainsString.RaiseValidation();
+
             NotContainsString = new ValidatableValue<string>
             {
                 ValidationRules = new IValidationRule<string>[]
@@ -29,6 +29,7 @@ namespace WD.Validators.Sample
                 }
             };
             NotContainsString.RaiseValidation();
+
             ContainsInteger = new ValidatableValue<int>
             {
                 ValidationRules = new IValidationRule<int>[]
@@ -37,6 +38,7 @@ namespace WD.Validators.Sample
                 }
             };
             ContainsString.RaiseValidation();
+
             Email = new ValidatableValue<string>
             {
                 ValidationRules = new IValidationRule<string>[]
@@ -45,14 +47,16 @@ namespace WD.Validators.Sample
                 }
             };
             Email.RaiseValidation();
+
             EqualsValue = new ValidatableValue<string>
             {
                 ValidationRules = new IValidationRule<string>[]
                 {
-                    new EqualValuesValidationRule<string>("Values are not equal", () => Email.Value) 
+                    new EqualValuesValidationRule<string>("Values are not equal", () => Email.Value)
                 }
             };
             EqualsValue.RaiseValidation();
+
             NullValue = new ValidatableValue<ValueHolder>
             {
                 ValidationRules = new IValidationRule<ValueHolder>[]
@@ -62,13 +66,51 @@ namespace WD.Validators.Sample
             };
             NullValue.RaiseValidation();
 
+            PhoneNumber = new ValidatableValue<string>
+            {
+                ValidationRules = new IValidationRule<string>[]
+                {
+                    new PhoneNumberValidationRule("Not valid phone number")
+                }
+            };
+            PhoneNumber.RaiseValidation();
+
+            IntRange = new ValidatableValue<int>
+            {
+                ValidationRules = new IValidationRule<int>[]
+                {
+                    new PrimitiveRangeValidationRule<int>("Value should be between 10 and 50", 10, 50)
+                }
+            };
+            IntRange.RaiseValidation();
+
+            RegexValue = new ValidatableValue<string>
+            {
+                ValidationRules = new IValidationRule<string>[]
+                {
+                    new RegexValidationRule("Allowed format: dd.MM.yyyy", @"^\d{2}\.\d{2}\.\d{4}$")
+                }
+            };
+            RegexValue.RaiseValidation();
+
+            MixedString = new ValidatableValue<string>
+            {
+                ValidationRules = new IValidationRule<string>[]
+                {
+                    new RequiredValidationRule("Required!"),
+                    new StringLengthValidationRule("Password should have at least 8 characters!", 8, false),
+                    new StringLengthValidationRule("Password should have at maximum 32 characters!", 32)
+                }
+            };
+            MixedString.RaiseValidation();
+
             // Values
             Values = new[]
             {
                 null,
                 new ValueHolder {Id = 1, DislayValue = "Value 1"},
                 new ValueHolder {Id = 2, DislayValue = "Value 2"},
-                new ValueHolder {Id = 3, DislayValue = "Value 3"},
+                new ValueHolder {Id = 3, DislayValue = "Value 3"}
             };
         }
 
@@ -91,6 +133,10 @@ namespace WD.Validators.Sample
         public ValidatableValue<string> Email { get; }
         public ValidatableValue<string> EqualsValue { get; }
         public ValidatableValue<ValueHolder> NullValue { get; }
+        public ValidatableValue<string> PhoneNumber { get; }
+        public ValidatableValue<int> IntRange { get; }
+        public ValidatableValue<string> RegexValue { get; }
+        public ValidatableValue<string> MixedString { get; }
 
         #endregion
     }
