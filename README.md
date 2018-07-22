@@ -54,3 +54,13 @@ Bind the value in your XAML code.
        Style="{StaticResource ErrorMessage}" />
 ...
 ```
+
+## Screenshots
+
+<img title="Android screenshot" alt="Android screenshot" src="docs/img/ScreenshotAndroid.png" style="max-width:45%;min-width:250px;"/>
+<img title="iOS screenshot" alt="iOS screenshot"  src="docs/img/ScreenshotIos.png" style="max-width:45%;min-width:250px;float:right;"/>
+
+<img title="UWP screenshot" alt="UWP screenshot" src="docs/img/ScreenshotUWP.png" style="max-width:45%;min-width:250px;"/>
+<img title="WPF screenshot" alt="WPF screenshot"  src="docs/img/ScreenshotWPF.png" style="max-width:45%;min-width:250px;float:right;"/>
+
+<img title="macOS screenshot" alt="macOS screenshot" src="docs/img/ScreenshotmacOs.png" style="max-width:45%;min-width:250px;"/>
