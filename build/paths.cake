@@ -12,6 +12,7 @@ public static class Paths {
     public const string TEST_COVERAGE_RESULT_FILE_XML = ARTIFACTS_OUTPUT + "TestCoverage.xml";
     public const string TEST_COVERAGE_RESULT_FILE_HTML = ARTIFACTS_OUTPUT + "TestCoverage.html";
     public const string RELEASE_NOTES_FILE = "./CHANGELOG";
+    public const string ASSEMBLY_INFO_FILE = "./src/GlobalAssemblyInfo.cs";
 
     public static readonly Uri LICENSE_URL = new Uri("https://github.com/WebDucer/WD.ValueValidators/blob/develop/LICENSE");
     public static readonly Uri PROJECT_URL = new Uri("https://github.com/WebDucer/WD.ValueValidators");
