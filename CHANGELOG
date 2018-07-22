@@ -1,5 +1,7 @@
 # 0.3
 
+- Add smaple project
+    - Xamarin.Forms (iOS, Android, UWP, macOS, WPF)
 - Add more meta information to assembly
     - Build date
     - Semantic version

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WD.Validators.Sample"
+             xmlns:converters="clr-namespace:WD.Validators.Sample.Converters;assembly=WD.Validators.Sample"
+             Title="Examples for validation rules"
+             x:Class="WD.Validators.Sample.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ValidationColorConverter x:Key="ValidEntryConverter" InvalidColor="#22ff0000" />
+
+            <Style x:Key="ErrorMessage" TargetType="Label">
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="FontSize" Value="{x:Static local:Constants+FontSize.SMALL}" />
+                <Setter Property="FontAttributes" Value="Italic" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView Margin="10">
+        <StackLayout>
+            <!-- Contains -->
+            <Label Text="Contains (test, example, fake):" />
+            <Entry Text="{Binding ContainsString.Value}" BackgroundColor="{Binding ContainsString.IsValid, Converter={StaticResource ValidEntryConverter}}" />
+            <Label Text="{Binding ContainsString.FirstError}" Style="{StaticResource ErrorMessage}" />
+
+            <!-- Contains - invert -->
+            <Label Text="Not contains (test, example, fake):" />
+            <Entry Text="{Binding NotContainsString.Value}" BackgroundColor="{Binding NotContainsString.IsValid, Converter={StaticResource ValidEntryConverter}}"/>
+            <Label Text="{Binding NotContainsString.FirstError}" Style="{StaticResource ErrorMessage}" />
+
+            <!-- Contains integer -->
+            <Label Text="Contains (5, 12, 25):" />
+            <Entry Text="{Binding ContainsInteger.Value}" BackgroundColor="{Binding ContainsInteger.IsValid, Converter={StaticResource ValidEntryConverter}}"/>
+            <Label Text="{Binding ContainsInteger.FirstError}" Style="{StaticResource ErrorMessage}" />
+
+            <!-- Email (empty allowed) -->
+            <Label Text="Email (empty allowed):" />
+            <Entry Text="{Binding Email.Value}" BackgroundColor="{Binding Email.IsValid, Converter={StaticResource ValidEntryConverter}}"/>
+            <Label Text="{Binding Email.FirstError}" Style="{StaticResource ErrorMessage}" />
+
+            <!-- Equal value (Email) -->
+            <Label Text="Equal value (Email):" />
+            <Entry Text="{Binding EqualsValue.Value}" BackgroundColor="{Binding EqualsValue.IsValid, Converter={StaticResource ValidEntryConverter}}"/>
+            <Label Text="{Binding EqualsValue.FirstError}" Style="{StaticResource ErrorMessage}" />
+
+            <!-- Null validation -->
+            <Label Text="Null validation:" />
+            <Picker ItemsSource="{Binding Values}" SelectedItem="{Binding NullValue.Value}" ItemDisplayBinding="{Binding DislayValue}" BackgroundColor="{Binding NullValue.IsValid, Converter={StaticResource ValidEntryConverter}}"/>
+            <Label Text="{Binding NullValue.FirstError}" Style="{StaticResource ErrorMessage}" />
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
