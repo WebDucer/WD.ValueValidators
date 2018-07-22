@@ -100,5 +100,15 @@ namespace WD.ValueValidators.Tests.Rules
             // Assert
             result.Should().Be(expected);
         }
+
+        [Test]
+        public void Constructor_SetErrorMessage()
+        {
+            // Arrange / Act
+            var sut = new RegexValidationRule(_ERROR_MESSAGE, @"\d+");
+
+            // Assert
+            sut.ErrorMessage.Should().Be(_ERROR_MESSAGE);
+        }
     }
 }

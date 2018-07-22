@@ -24,5 +24,15 @@ namespace WD.ValueValidators.Tests.Rules
             // Assert
             result.Should().Be(expected);
         }
+
+        [Test]
+        public void Constructor_SetErrorMessage()
+        {
+            // Arrange / Act
+            var sut = new NullValidationRule<object>(_ERROR_MESSAGE, false);
+
+            // Assert
+            sut.ErrorMessage.Should().Be(_ERROR_MESSAGE);
+        }
     }
 }
