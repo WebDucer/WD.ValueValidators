@@ -12,6 +12,10 @@ namespace WD.ValueValidators.Base
     /// <typeparam name="T"></typeparam>
     public class ValidatableValue<T> : IValidatableValue<T>, INotifyPropertyChanged
     {
+        #region Constants
+
+        private const string _NO_ERROR = " ";
+        #endregion
         #region Properties
 
         /// <summary>
@@ -60,7 +64,14 @@ namespace WD.ValueValidators.Base
         #region Implementation of IValidatable
 
         /// <inheritdoc />
-        public string FirstError => Errors?.FirstOrDefault();
+        public string FirstError
+        {
+            get
+            {
+                var firstError =Errors?.FirstOrDefault();
+                return string.IsNullOrEmpty(firstError) ? _NO_ERROR : firstError;
+            }
+        }
 
         /// <inheritdoc />
         public IEnumerable<string> Errors { get; private set; } = new string[0];

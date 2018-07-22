@@ -1,3 +1,13 @@
+# 0.3
+
+- Add more meta information to assembly
+    - Build date
+    - Semantic version
+    - Git hash
+- New Validators
+    - RegexValidationRule
+    - NullValidationRule<T>
+
 # 0.2
 
 - Add requred rule
