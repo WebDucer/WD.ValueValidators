@@ -25,7 +25,7 @@ namespace WD.ValueValidators.Tests.Base
 
             // Assert
             sut.IsValid.Should().BeTrue();
-            sut.FirstError.Should().BeNullOrEmpty();
+            sut.FirstError.Should().Be(" ");
             sut.Errors.Should().BeEmpty();
         }
 
@@ -217,7 +217,7 @@ namespace WD.ValueValidators.Tests.Base
 
             // Assert
             sut.IsValid.Should().BeTrue();
-            sut.FirstError.Should().BeNullOrEmpty();
+            sut.FirstError.Should().Be(" ");
             sut.Errors.Should().BeEmpty();
         }
 
