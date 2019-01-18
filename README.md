@@ -25,6 +25,9 @@ Library with common value validators to be used in UI application (e.g. ASP.Net 
 - `RegexValidationRule` - Check, if the value match the given regular expression
 - `RequiredValidationRule` - Check, if the string value is set (with a flag, for white spaces treaded as valid values)
 - `StringLengthValidationRule` - Check the max or min length of a string
+- `GreaterThanRule` - Check, if the value is greater (or equal) to a given value
+- `SmallerThanRule` - Check, if the value is smaller (or equal) to a given value
+- `RevalidateOtherValueRule` - Trigger the validation of another validatable value
 
 ## Usage
 
