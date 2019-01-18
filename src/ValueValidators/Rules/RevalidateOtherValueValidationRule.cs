@@ -1,4 +1,5 @@
-﻿using WD.ValueValidators.Base;
+﻿using System;
+using WD.ValueValidators.Base;
 
 namespace WD.ValueValidators.Rules
 {
@@ -6,7 +7,7 @@ namespace WD.ValueValidators.Rules
     ///     Rule tot trigger the validation of another validatable value
     /// </summary>
     /// <typeparam name="T">Value type</typeparam>
-    public class RevalidateOtherValueRule<T> : IValidationRule<T>
+    public class RevalidateOtherValueValidationRule<T> : IValidationRule<T>
     {
         private readonly IValidatableValue<T> _value;
 
@@ -14,9 +15,9 @@ namespace WD.ValueValidators.Rules
         ///     Constructor
         /// </summary>
         /// <param name="value">Value to refresh validation</param>
-        public RevalidateOtherValueRule(IValidatableValue<T> value)
+        public RevalidateOtherValueValidationRule(IValidatableValue<T> value)
         {
-            _value = value;
+            _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         #region Implementation of IValidationRule<in T>
