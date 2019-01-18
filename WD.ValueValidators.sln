@@ -15,11 +15,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{0B31FAE4
 		GitVersion.yml = GitVersion.yml
 		build\names.cake = build\names.cake
 		build\paths.cake = build\paths.cake
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueValidators", "src\ValueValidators\ValueValidators.csproj", "{A5620E60-FEE3-463A-8293-8AFE1AB2F11B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValueValidators", "src\ValueValidators\ValueValidators.csproj", "{A5620E60-FEE3-463A-8293-8AFE1AB2F11B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueValidators.Tests", "tests\ValueValidators.Tests\ValueValidators.Tests.csproj", "{08B83DFD-AC62-47B2-89D7-457CB35B398E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValueValidators.Tests", "tests\ValueValidators.Tests\ValueValidators.Tests.csproj", "{08B83DFD-AC62-47B2-89D7-457CB35B398E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{3E079DAA-116E-48BE-AC90-C490ACBE31E7}"
 EndProject
@@ -29,7 +30,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WD.Validators.Sample.iOS", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WD.Validators.Sample.UWP", "sample\WD.Validators.Sample.UWP\WD.Validators.Sample.UWP.csproj", "{7D522B08-3193-4D0B-8AD9-B59682DC884F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WD.Validators.Sample", "sample\WD.Validators.Sample\WD.Validators.Sample.csproj", "{1ABC81C2-3E9B-4702-9300-B20F160E3DCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WD.Validators.Sample", "sample\WD.Validators.Sample\WD.Validators.Sample.csproj", "{1ABC81C2-3E9B-4702-9300-B20F160E3DCE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WD.Validators.Sample.WPF", "sample\WD.Validators.Sample.WPF\WD.Validators.Sample.WPF.csproj", "{52C25580-441F-4B39-AF10-EBA4334B5724}"
 EndProject
