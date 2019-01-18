@@ -3,6 +3,7 @@ using NUnit.Framework;
 using WD.ValueValidators.Rules;
 using WD.ValueValidators.Tests.TestMocks;
 
+
 namespace WD.ValueValidators.Tests.Rules
 {
     [TestFixture]
@@ -21,6 +22,17 @@ namespace WD.ValueValidators.Tests.Rules
 
             // Assert
             triggeredValue.ValidationCalled.Should().Be(1);
+        }
+
+        [Test]
+        public void Constructor_SetErrorMessage()
+        {
+            // Arrange / Act
+            var triggeredValue = new TestValidatableValue();
+            var sut = new RevalidateOtherValueValidationRule<int>(triggeredValue);
+
+            // Assert
+            sut.ErrorMessage.Should().BeEmpty();
         }
     }
 }

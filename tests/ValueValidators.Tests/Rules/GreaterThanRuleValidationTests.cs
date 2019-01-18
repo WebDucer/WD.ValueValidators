@@ -1,6 +1,6 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
+using System;
 using WD.ValueValidators.Base;
 using WD.ValueValidators.Rules;
 using static WD.ValueValidators.Tests.Constants;
@@ -85,6 +85,20 @@ namespace WD.ValueValidators.Tests.Rules
 
             // Assert
             result.Should().BeFalse();
+        }
+
+        [Test]
+        public void Constructor_SetErrorMessage()
+        {
+            // Arrange / Act
+            var compareValue = new ValidatableValue<int>
+            {
+                Value = 100
+            };
+            var sut = new GreaterThanValidationRule<int>(ERROR_MESSAGE, compareValue);
+
+            // Assert
+            sut.ErrorMessage.Should().Be(ERROR_MESSAGE);
         }
     }
 }

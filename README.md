@@ -38,10 +38,18 @@ MyValidatableValue = new ValidatableValue<string>
 {
     ValidationRules = new IValidationRule<string>[]
     {
-        new ContainsValidationRule<string>("Value not allowed", new[] {"test", "example", "fake"}, true),
-        new StringLengthValidationRule("The value should have at least 2 characters", 2, false),
-        new StringLengthValidationRule("The value should have at maximum 16 charachters", 16),
-        new RequiredValidationRule("Value is required")
+        new ContainsValidationRule<string>(
+            errorMessage: "Value not allowed",
+            checkCollection: new[] {"test", "example", "fake"},
+            nullOrEmptyIsValid: true),
+        new StringLengthValidationRule(
+            errorMessage: "The value should have at least 2 characters
+            length: 2,
+            checkMaxLength: false),
+        new StringLengthValidationRule(
+            errorMessage: "The value should have at maximum 16 charachters",
+            length: 16),
+        new RequiredValidationRule(errorMessage: "Value is required")
     }
 };
 ```
