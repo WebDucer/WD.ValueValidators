@@ -24,6 +24,11 @@ namespace WD.ValueValidators.Base
         bool IsValid { get; }
 
         /// <summary>
+        ///     Object is not valid (inverse of <see cref="IsValid" />)
+        /// </summary>
+        bool IsNotValid { get; }
+
+        /// <summary>
         ///     Manual trigger for validation run
         /// </summary>
         void RaiseValidation();

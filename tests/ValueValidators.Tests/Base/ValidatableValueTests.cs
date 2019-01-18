@@ -1,6 +1,6 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
+using System;
 using WD.ValueValidators.Base;
 using WD.ValueValidators.Rules;
 
@@ -25,6 +25,7 @@ namespace WD.ValueValidators.Tests.Base
 
             // Assert
             sut.IsValid.Should().BeTrue();
+            sut.IsNotValid.Should().BeFalse();
             sut.FirstError.Should().Be(" ");
             sut.Errors.Should().BeEmpty();
         }
@@ -39,7 +40,7 @@ namespace WD.ValueValidators.Tests.Base
         public void SetValue_SetNewValue(string startValue, string newValue)
         {
             // Arrange
-            var sut = new ValidatableValue<string> {Value = startValue};
+            var sut = new ValidatableValue<string> { Value = startValue };
 
             // Act
             sut.Value = newValue;
@@ -56,7 +57,7 @@ namespace WD.ValueValidators.Tests.Base
             var sut = new ValidatableValue<string>
             {
                 Value = startValue,
-                ValidationRules = new[]
+                ValidationRules = new IValidationRule<string>[]
                 {
                     new StringLengthValidationRule("Length Error", 2, false, true),
                     new StringLengthValidationRule(_ERROR_MESSAGE, 5)
@@ -65,7 +66,8 @@ namespace WD.ValueValidators.Tests.Base
 
             // Act
             sut.IsValid.Should().BeTrue();
-            using (var monitor = sut.Monitor())
+            sut.IsNotValid.Should().BeFalse();
+            using (FluentAssertions.Events.IMonitor<ValidatableValue<string>> monitor = sut.Monitor())
             {
                 sut.RaiseValidation();
 
@@ -84,7 +86,7 @@ namespace WD.ValueValidators.Tests.Base
             var sut = new ValidatableValue<string>
             {
                 Value = startValue,
-                ValidationRules = new[]
+                ValidationRules = new IValidationRule<string>[]
                 {
                     new StringLengthValidationRule("Length Error", 2, false, true),
                     new StringLengthValidationRule(_ERROR_MESSAGE, 5)
@@ -93,10 +95,12 @@ namespace WD.ValueValidators.Tests.Base
 
             // Act
             sut.IsValid.Should().BeTrue();
+            sut.IsNotValid.Should().BeFalse();
             sut.RaiseValidation();
 
             // Assert
             sut.IsValid.Should().BeFalse();
+            sut.IsNotValid.Should().BeTrue();
         }
 
         [Test]
@@ -105,10 +109,10 @@ namespace WD.ValueValidators.Tests.Base
             // Arrange
             var value1 = Guid.NewGuid().ToString();
             var value2 = Guid.NewGuid().ToString();
-            var sut = new ValidatableValue<string> {Value = value1};
+            var sut = new ValidatableValue<string> { Value = value1 };
 
             // Act
-            using (var monitor = sut.Monitor())
+            using (FluentAssertions.Events.IMonitor<ValidatableValue<string>> monitor = sut.Monitor())
             {
                 sut.Value = value2;
 
@@ -126,7 +130,7 @@ namespace WD.ValueValidators.Tests.Base
             var value2 = "1234";
             var sut = new ValidatableValue<string>
             {
-                ValidationRules = new[]
+                ValidationRules = new IValidationRule<string>[]
                 {
                     new StringLengthValidationRule(_ERROR_MESSAGE, 5)
                 },
@@ -135,7 +139,7 @@ namespace WD.ValueValidators.Tests.Base
 
             // Act
             sut.Value = value;
-            using (var monitor = sut.Monitor())
+            using (FluentAssertions.Events.IMonitor<ValidatableValue<string>> monitor = sut.Monitor())
             {
                 sut.Value = value2;
 
@@ -144,6 +148,7 @@ namespace WD.ValueValidators.Tests.Base
                 monitor.Should().NotRaisePropertyChangeFor(t => t.Errors);
                 monitor.Should().NotRaisePropertyChangeFor(t => t.FirstError);
                 monitor.Should().NotRaisePropertyChangeFor(t => t.IsValid);
+                monitor.Should().NotRaisePropertyChangeFor(t => t.IsNotValid);
             }
         }
 
@@ -155,7 +160,7 @@ namespace WD.ValueValidators.Tests.Base
             string value = null;
             var sut = new ValidatableValue<string>
             {
-                ValidationRules = new[]
+                ValidationRules = new IValidationRule<string>[]
                 {
                     new NullValidationRule<string>(_ERROR_MESSAGE)
                 },
@@ -167,6 +172,7 @@ namespace WD.ValueValidators.Tests.Base
 
             // Assert
             sut.IsValid.Should().BeFalse();
+            sut.IsNotValid.Should().BeTrue();
             sut.FirstError.Should().Be(_ERROR_MESSAGE);
             sut.Errors.Should().HaveCount(1);
         }
@@ -179,7 +185,7 @@ namespace WD.ValueValidators.Tests.Base
             string value = null;
             var sut = new ValidatableValue<string>
             {
-                ValidationRules = new[]
+                ValidationRules = new IValidationRule<string>[]
                 {
                     new NullValidationRule<string>(_ERROR_MESSAGE)
                 },
@@ -187,7 +193,7 @@ namespace WD.ValueValidators.Tests.Base
             };
 
             // Act
-            using (var monitor = sut.Monitor())
+            using (FluentAssertions.Events.IMonitor<ValidatableValue<string>> monitor = sut.Monitor())
             {
                 sut.Value = value;
 
@@ -196,6 +202,7 @@ namespace WD.ValueValidators.Tests.Base
                 monitor.Should().RaisePropertyChangeFor(t => t.Errors);
                 monitor.Should().RaisePropertyChangeFor(t => t.FirstError);
                 monitor.Should().RaisePropertyChangeFor(t => t.IsValid);
+                monitor.Should().RaisePropertyChangeFor(t => t.IsNotValid);
             }
         }
 
@@ -206,17 +213,15 @@ namespace WD.ValueValidators.Tests.Base
             var value = "Not empty";
             var sut = new ValidatableValue<string>
             {
-                ValidationRules = new[]
-                {
-                    new NullValidationRule<string>(_ERROR_MESSAGE)
-                }
+                ValidationRules = new IValidationRule<string>[] { new NullValidationRule<string>(_ERROR_MESSAGE) },
+                Value = value
             };
 
             // Act
-            sut.Value = value;
 
             // Assert
             sut.IsValid.Should().BeTrue();
+            sut.IsNotValid.Should().BeFalse();
             sut.FirstError.Should().Be(" ");
             sut.Errors.Should().BeEmpty();
         }
@@ -230,7 +235,7 @@ namespace WD.ValueValidators.Tests.Base
             var value2 = "123456"; // invalid rule 2
             var sut = new ValidatableValue<string>
             {
-                ValidationRules = new[]
+                ValidationRules = new IValidationRule<string>[]
                 {
                     new StringLengthValidationRule("Length Error", 2, false, true),
                     new StringLengthValidationRule(_ERROR_MESSAGE, 5)
@@ -240,7 +245,7 @@ namespace WD.ValueValidators.Tests.Base
 
             // Act
             sut.Value = value;
-            using (var monitor = sut.Monitor())
+            using (FluentAssertions.Events.IMonitor<ValidatableValue<string>> monitor = sut.Monitor())
             {
                 sut.Value = value2;
 
@@ -249,6 +254,7 @@ namespace WD.ValueValidators.Tests.Base
                 monitor.Should().RaisePropertyChangeFor(t => t.Errors);
                 monitor.Should().RaisePropertyChangeFor(t => t.FirstError);
                 monitor.Should().NotRaisePropertyChangeFor(t => t.IsValid);
+                monitor.Should().NotRaisePropertyChangeFor(t => t.IsNotValid);
             }
         }
     }
