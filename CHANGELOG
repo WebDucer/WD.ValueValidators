@@ -1,4 +1,11 @@
-# 0.3
+# 0.4
+
+- Add `IsNotValid` property for easier error visibility binding 
+- Add GreaterThan rule
+- Add SmallerThan rule
+- Add RefreshValidation rule
+
+## 0.3
 
 - Add smaple project
     - Xamarin.Forms (iOS, Android, UWP, macOS, WPF)
@@ -12,11 +19,11 @@
     - PhoneNumberValidationrule
     - EmailValidationRule
 
-# 0.2
+## 0.2
 
 - Add requred rule
 - Add contains rule
 
-# 0.1
+## 0.1
 
 - Initial release

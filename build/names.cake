@@ -14,4 +14,6 @@ public static class Names {
     public static readonly string[] PROJECT_TAGS = {"Value", "Validation", "Validator", "WebDucer", "Rule"};
 
     public const string SONARQUBE_ORGANISATION = "webducer-oss";
+
+    public const string DEFAULT_CONFIGURATION = "Release";
 }

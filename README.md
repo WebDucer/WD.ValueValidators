@@ -25,6 +25,9 @@ Library with common value validators to be used in UI application (e.g. ASP.Net 
 - `RegexValidationRule` - Check, if the value match the given regular expression
 - `RequiredValidationRule` - Check, if the string value is set (with a flag, for white spaces treaded as valid values)
 - `StringLengthValidationRule` - Check the max or min length of a string
+- `GreaterThanRule` - Check, if the value is greater (or equal) to a given value
+- `SmallerThanRule` - Check, if the value is smaller (or equal) to a given value
+- `RevalidateOtherValueRule` - Trigger the validation of another validatable value
 
 ## Usage
 
@@ -35,10 +38,18 @@ MyValidatableValue = new ValidatableValue<string>
 {
     ValidationRules = new IValidationRule<string>[]
     {
-        new ContainsValidationRule<string>("Value not allowed", new[] {"test", "example", "fake"}, true),
-        new StringLengthValidationRule("The value should have at least 2 characters", 2, false),
-        new StringLengthValidationRule("The value should have at maximum 16 charachters", 16),
-        new RequiredValidationRule("Value is required")
+        new ContainsValidationRule<string>(
+            errorMessage: "Value not allowed",
+            checkCollection: new[] {"test", "example", "fake"},
+            nullOrEmptyIsValid: true),
+        new StringLengthValidationRule(
+            errorMessage: "The value should have at least 2 characters
+            length: 2,
+            checkMaxLength: false),
+        new StringLengthValidationRule(
+            errorMessage: "The value should have at maximum 16 charachters",
+            length: 16),
+        new RequiredValidationRule(errorMessage: "Value is required")
     }
 };
 ```
@@ -57,10 +68,10 @@ Bind the value in your XAML code.
 
 ## Screenshots
 
-<img title="Android screenshot" alt="Android screenshot" src="docs/img/ScreenshotAndroid.png" style="max-width:45%;min-width:250px;"/>
-<img title="iOS screenshot" alt="iOS screenshot"  src="docs/img/ScreenshotIos.png" style="max-width:45%;min-width:250px;float:right;"/>
+<img title="Android screenshot" alt="Android screenshot" src="docs/img/ScreenshotAndroid.png" style="max-width:45%;min-width:150px;"/>
+<img title="iOS screenshot" alt="iOS screenshot"  src="docs/img/ScreenshotIos.png" style="max-width:45%;min-width:150px;float:right;"/>
 
-<img title="UWP screenshot" alt="UWP screenshot" src="docs/img/ScreenshotUWP.png" style="max-width:45%;min-width:250px;"/>
-<img title="WPF screenshot" alt="WPF screenshot"  src="docs/img/ScreenshotWPF.png" style="max-width:45%;min-width:250px;float:right;"/>
+<img title="UWP screenshot" alt="UWP screenshot" src="docs/img/ScreenshotUWP.png" style="max-width:45%;min-width:150px;"/>
+<img title="WPF screenshot" alt="WPF screenshot"  src="docs/img/ScreenshotWPF.png" style="max-width:45%;min-width:150px;float:right;"/>
 
-<img title="macOS screenshot" alt="macOS screenshot" src="docs/img/ScreenshotmacOs.png" style="max-width:45%;min-width:250px;"/>
+<img title="macOS screenshot" alt="macOS screenshot" src="docs/img/ScreenshotMacOs.png" style="max-width:45%;min-width:150px;"/>

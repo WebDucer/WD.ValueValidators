@@ -15,7 +15,9 @@ namespace WD.ValueValidators.Base
         #region Constants
 
         private const string _NO_ERROR = " ";
+
         #endregion
+
         #region Properties
 
         /// <summary>
@@ -56,6 +58,7 @@ namespace WD.ValueValidators.Base
             }
 
             RaisePropertyChanged(nameof(IsValid));
+            RaisePropertyChanged(nameof(IsNotValid));
             RaiseIsValidChaged(isValid);
         }
 
@@ -64,11 +67,9 @@ namespace WD.ValueValidators.Base
         #region Implementation of IValidatable
 
         /// <inheritdoc />
-        public string FirstError
-        {
-            get
-            {
-                var firstError =Errors?.FirstOrDefault();
+        public string FirstError {
+            get {
+                var firstError = Errors?.FirstOrDefault();
                 return string.IsNullOrEmpty(firstError) ? _NO_ERROR : firstError;
             }
         }
@@ -78,6 +79,9 @@ namespace WD.ValueValidators.Base
 
         /// <inheritdoc />
         public bool IsValid => Errors?.Any() == false;
+
+        /// <inheritdoc />
+        public bool IsNotValid => !IsValid;
 
         /// <inheritdoc />
         public void RaiseValidation()
@@ -104,11 +108,9 @@ namespace WD.ValueValidators.Base
         private T _value;
 
         /// <inheritdoc />
-        public T Value
-        {
+        public T Value {
             get => _value;
-            set
-            {
+            set {
                 if (EqualityComparer<T>.Default.Equals(_value, value))
                 {
                     return;
