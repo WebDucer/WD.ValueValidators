@@ -25,9 +25,9 @@ Library with common value validators to be used in UI application (e.g. ASP.Net 
 - `RegexValidationRule` - Check, if the value match the given regular expression
 - `RequiredValidationRule` - Check, if the string value is set (with a flag, for white spaces treaded as valid values)
 - `StringLengthValidationRule` - Check the max or min length of a string
-- `GreaterThanRule` - Check, if the value is greater (or equal) to a given value
-- `SmallerThanRule` - Check, if the value is smaller (or equal) to a given value
-- `RevalidateOtherValueRule` - Trigger the validation of another validatable value
+- `GreaterThanValidationRule` - Check, if the value is greater (or equal) to a given value
+- `SmallerThanValidationRule` - Check, if the value is smaller (or equal) to a given value
+- `RevalidateOtherValueValidationRule` - Trigger the validation of another validatable value
 
 ## Usage
 
@@ -68,10 +68,10 @@ Bind the value in your XAML code.
 
 ## Screenshots
 
-<img title="Android screenshot" alt="Android screenshot" src="docs/img/ScreenshotAndroid.png" style="max-width:45%;min-width:150px;"/>
-<img title="iOS screenshot" alt="iOS screenshot"  src="docs/img/ScreenshotIos.png" style="max-width:45%;min-width:150px;float:right;"/>
+<img title="Android screenshot" alt="Android screenshot" src="docs/img/ScreenshotAndroid.png" style="max-width:30%;min-width:150px;"/>
+<img title="iOS screenshot" alt="iOS screenshot"  src="docs/img/ScreenshotIos.png" style="max-width:30%;min-width:150px;float:right;"/>
 
-<img title="UWP screenshot" alt="UWP screenshot" src="docs/img/ScreenshotUWP.png" style="max-width:45%;min-width:150px;"/>
-<img title="WPF screenshot" alt="WPF screenshot"  src="docs/img/ScreenshotWPF.png" style="max-width:45%;min-width:150px;float:right;"/>
+<img title="UWP screenshot" alt="UWP screenshot" src="docs/img/ScreenshotUWP.png" style="max-width:30%;min-width:150px;"/>
+<img title="WPF screenshot" alt="WPF screenshot"  src="docs/img/ScreenshotWPF.png" style="max-width:30%;min-width:150px;float:right;"/>
 
-<img title="macOS screenshot" alt="macOS screenshot" src="docs/img/ScreenshotMacOs.png" style="max-width:45%;min-width:150px;"/>
+<img title="macOS screenshot" alt="macOS screenshot" src="docs/img/ScreenshotMacOs.png" style="max-width:30%;min-width:150px;"/>
