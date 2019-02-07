@@ -155,11 +155,6 @@ namespace WD.ValueValidators.Base
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        void IValidatable.RaiseValidation()
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
     }
 }

@@ -1,4 +1,9 @@
-# 0.4
+# 0.5
+
+- Add non generic `IValidatableValue` interface (implemented explicit in the base class)
+- Refactor the `RevalidateOtherValueValidationRule` rule to use nongeneric valaidatable values for trigger
+
+## 0.4
 
 - Add `IsNotValid` property for easier error visibility binding 
 - Add GreaterThan rule
