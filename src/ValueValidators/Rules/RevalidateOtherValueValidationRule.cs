@@ -9,13 +9,13 @@ namespace WD.ValueValidators.Rules
     /// <typeparam name="T">Value type</typeparam>
     public class RevalidateOtherValueValidationRule<T> : IValidationRule<T>
     {
-        private readonly IValidatableValue<T> _value;
+        private readonly IValidatableValue _value;
 
         /// <summary>
         ///     Constructor
         /// </summary>
         /// <param name="value">Value to refresh validation</param>
-        public RevalidateOtherValueValidationRule(IValidatableValue<T> value)
+        public RevalidateOtherValueValidationRule(IValidatableValue value)
         {
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }

@@ -40,6 +40,17 @@ namespace WD.ValueValidators.Base
     }
 
     /// <summary>
+    /// Non generic interface for validatable value
+    /// </summary>
+    public interface IValidatableValue : IValidatable
+    {
+        /// <summary>
+        /// Value for test
+        /// </summary>
+        object Value { get; set; }
+    }
+
+    /// <summary>
     ///     Validatable value
     /// </summary>
     /// <typeparam name="T"></typeparam>

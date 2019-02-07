@@ -14,6 +14,13 @@ Library with common value validators to be used in UI application (e.g. ASP.Net 
 | SonarCube Quality Gate | | [![SonarQube Quality Gate](https://sonarcloud.io/api/project_badges/measure?branch=develop&project=WD.ValueValidators&metric=alert_status)](https://sonarcloud.io/dashboard?branch=develop&id=WD.ValueValidators) | [![SonarQube Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=WD.ValueValidators&metric=alert_status)](https://sonarcloud.io/dashboard?id=WD.ValueValidators) |
 | Nuget |  [![NuGet](https://img.shields.io/nuget/dt/WD.ValueValidators.svg)](https://www.nuget.org/packages/WD.ValueValidators) | [![NuGet Pre Release](https://img.shields.io/nuget/vpre/WD.ValueValidators.svg)](https://www.nuget.org/packages/WD.ValueValidators) | [![NuGet](https://img.shields.io/nuget/v/WD.ValueValidators.svg)](https://www.nuget.org/packages/WD.ValueValidators) |
 
+## Interfaces
+
+- `IValidationRule<T>`: Generic interface for the rules
+- `IValidatable`: Interface to handle validation
+- `IValidatableValue<T>`: Generic interface for a validatable value
+- `IValidatableValue`: Non geniric interface for validatable value (mostly implemented explizit) 
+
 ## Validation Rules
 
 - `ContainsValidationRule` - Check, if the value is in the given collection (with possibility to inverse the result)
@@ -25,9 +32,9 @@ Library with common value validators to be used in UI application (e.g. ASP.Net 
 - `RegexValidationRule` - Check, if the value match the given regular expression
 - `RequiredValidationRule` - Check, if the string value is set (with a flag, for white spaces treaded as valid values)
 - `StringLengthValidationRule` - Check the max or min length of a string
-- `GreaterThanRule` - Check, if the value is greater (or equal) to a given value
-- `SmallerThanRule` - Check, if the value is smaller (or equal) to a given value
-- `RevalidateOtherValueRule` - Trigger the validation of another validatable value
+- `GreaterThanValidationRule` - Check, if the value is greater (or equal) to a given value
+- `SmallerThanValidationRule` - Check, if the value is smaller (or equal) to a given value
+- `RevalidateOtherValueValidationRule` - Trigger the validation of another validatable value
 
 ## Usage
 
@@ -68,10 +75,10 @@ Bind the value in your XAML code.
 
 ## Screenshots
 
-<img title="Android screenshot" alt="Android screenshot" src="docs/img/ScreenshotAndroid.png" style="max-width:45%;min-width:150px;"/>
-<img title="iOS screenshot" alt="iOS screenshot"  src="docs/img/ScreenshotIos.png" style="max-width:45%;min-width:150px;float:right;"/>
+<img title="Android screenshot" alt="Android screenshot" src="docs/img/ScreenshotAndroid.png" style="max-width:30%;min-width:150px;"/>
+<img title="iOS screenshot" alt="iOS screenshot"  src="docs/img/ScreenshotIos.png" style="max-width:30%;min-width:150px;float:right;"/>
 
-<img title="UWP screenshot" alt="UWP screenshot" src="docs/img/ScreenshotUWP.png" style="max-width:45%;min-width:150px;"/>
-<img title="WPF screenshot" alt="WPF screenshot"  src="docs/img/ScreenshotWPF.png" style="max-width:45%;min-width:150px;float:right;"/>
+<img title="UWP screenshot" alt="UWP screenshot" src="docs/img/ScreenshotUWP.png" style="max-width:30%;min-width:150px;"/>
+<img title="WPF screenshot" alt="WPF screenshot"  src="docs/img/ScreenshotWPF.png" style="max-width:30%;min-width:150px;float:right;"/>
 
-<img title="macOS screenshot" alt="macOS screenshot" src="docs/img/ScreenshotMacOs.png" style="max-width:45%;min-width:150px;"/>
+<img title="macOS screenshot" alt="macOS screenshot" src="docs/img/ScreenshotMacOs.png" style="max-width:30%;min-width:150px;"/>

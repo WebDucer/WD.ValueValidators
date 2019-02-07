@@ -10,7 +10,7 @@ namespace WD.ValueValidators.Base
     ///     Validatable value implementation, with INotifyPropertyChange to detect value changes
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ValidatableValue<T> : IValidatableValue<T>, INotifyPropertyChanged
+    public class ValidatableValue<T> : IValidatableValue, IValidatableValue<T>, INotifyPropertyChanged
     {
         #region Constants
 
@@ -121,6 +121,8 @@ namespace WD.ValueValidators.Base
                 ValidateValue(value);
             }
         }
+
+        object IValidatableValue.Value { get => Value; set => Value = (T)value; }
 
         #endregion
 
