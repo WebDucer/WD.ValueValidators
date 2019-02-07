@@ -25,19 +25,6 @@ namespace WD.ValueValidators.Base
         /// </summary>
         public IList<IValidationRule<T>> ValidationRules { get; set; } = new List<IValidationRule<T>>();
 
-        event EventHandler<IsValidEventArgs> IValidatable.IsValidChanged
-        {
-            add
-            {
-                throw new NotImplementedException();
-            }
-
-            remove
-            {
-                throw new NotImplementedException();
-            }
-        }
-
         #endregion
 
         #region Validation
