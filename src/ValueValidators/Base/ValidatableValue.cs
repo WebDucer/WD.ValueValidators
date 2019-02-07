@@ -10,7 +10,7 @@ namespace WD.ValueValidators.Base
     ///     Validatable value implementation, with INotifyPropertyChange to detect value changes
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ValidatableValue<T> : IValidatableValue<T>, INotifyPropertyChanged
+    public class ValidatableValue<T> : IValidatableValue, IValidatableValue<T>, INotifyPropertyChanged
     {
         #region Constants
 
@@ -24,6 +24,19 @@ namespace WD.ValueValidators.Base
         ///     Collection of validation rules for this value
         /// </summary>
         public IList<IValidationRule<T>> ValidationRules { get; set; } = new List<IValidationRule<T>>();
+
+        event EventHandler<IsValidEventArgs> IValidatable.IsValidChanged
+        {
+            add
+            {
+                throw new NotImplementedException();
+            }
+
+            remove
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         #endregion
 
@@ -122,6 +135,8 @@ namespace WD.ValueValidators.Base
             }
         }
 
+        object IValidatableValue.Value { get => Value; set => Value = (T)value; }
+
         #endregion
 
         #region Implementation of INotifyPropertyChanged
@@ -138,6 +153,11 @@ namespace WD.ValueValidators.Base
         protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        void IValidatable.RaiseValidation()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
